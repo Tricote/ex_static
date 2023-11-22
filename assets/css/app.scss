@@ -1,0 +1,22 @@
+// Custom Variables (override boostrap variables)
+@import "variables.scss";
+
+// Import Bootstrap
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+// Fontawesome
+// $fa-font-path: "../node_modules/@fortawesome/fontawesome-free/webfonts/";
+// @import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+@import "makup.scss";
+
+/* This file is for your main application CSS */
+
+.article-body p {
+  margin-bottom: 1.6em;
+  line-height: 1.8em;
+}
+
+.article-body pre {
+  margin-bottom: 1.6em;
+}

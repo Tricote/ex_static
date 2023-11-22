@@ -1,0 +1,29 @@
+<div class="card shadow-sm shadow-hover position-relative mb-3">
+  <div class="card-body">
+    <div class="d-flex">
+      <div class="left flex-grow-1">
+        <p class="mb-1">
+          <strong class="text-primary">
+            <%= @post.tags |> Enum.map(fn tag -> "##{tag}" end) |> Enum.join(", ") %>
+          </strong>
+        </p>
+        <h3 class="card-title mb-2"><%= @post.title %></h3>
+        <%= if(@post.description) do %>
+          <p class="card-text mb-2">
+            <%= @post.description %>
+          </p>
+        <% end %>
+        <p class="card-text mb-1 text-muted"><%= @post.date %></p>
+        <.link class="stretched-link" href={~p"/blog/#{@post.id}"}>
+          Continue reading
+        </.link>
+      </div>
+      <div class="right flex-shrink-0 d-flex align-items-center">
+        <span class="fa-stack fa-2x">
+          <i class="fa-solid fa-circle fa-stack-2x text-light"></i>
+          <i class="fa-solid fa-arrow-right fa-stack-1x text-primary"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

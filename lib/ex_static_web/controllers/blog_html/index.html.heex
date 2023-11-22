@@ -1,0 +1,9 @@
+<main class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <%= for post <- @posts do %>
+        <.index_post_item post={post} />
+      <% end %>
+    </div>
+  </div>
+</main>

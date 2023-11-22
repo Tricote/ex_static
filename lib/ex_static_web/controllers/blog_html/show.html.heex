@@ -1,0 +1,26 @@
+<main class="container">
+  <div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow-sm shadow-hover position-relative mb-3">
+        <div class="card-body">
+          <p class="mb-1">
+            <strong class="text-primary">
+              <%= @post.tags |> Enum.map(fn tag -> "##{tag}" end) |> Enum.join(", ") %>
+            </strong>
+          </p>
+          <h3 class="card-title mb-2"><%= @post.title %></h3>
+          <%= if(@post.description) do %>
+            <p class="card-text mb-2">
+              <%= @post.description %>
+            </p>
+          <% end %>
+          <p class="card-text mb-1 text-muted"><%= @post.date %></p>
+          <hr />
+          <div class="article-body">
+            <%= raw(@post.body) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

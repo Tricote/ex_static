@@ -1,0 +1,21 @@
+<main class="container">
+  <div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card position-relative mb-3">
+        <div class="card-body rounded">
+          <h1 class="display-4 fw-bold">ExStatic</h1>
+          <p class="lead my-3">
+            A blog about Elixir and Software Engineering
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <%= for post <- @posts do %>
+        <ExStaticWeb.BlogHTML.index_post_item post={post} />
+      <% end %>
+    </div>
+  </div>
+</main>
