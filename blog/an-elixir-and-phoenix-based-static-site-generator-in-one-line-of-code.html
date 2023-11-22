@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="FnBfGgY2ESUAVn4fIDFiPAklXlRVMXZbR1rLjYSnr9Mngv0Jol0cgYEh">
+    <title data-suffix=" · Phoenix Framework">
+ExStatic
+     · Phoenix Framework</title>
+    <link phx-track-static rel="stylesheet" href="../assets/app-d85658af0a343d69bd0b2174bbbdc8f9.css">
+    <script defer phx-track-static type="text/javascript" src="../assets/app-63c815f0894ce301efe8d07ba30e3cd6.js">
+    </script>
+  </head>
+  <body class="bg-white antialiased">
+<div class="container">
+  <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-4 pt-1"></div>
+      <div class="col-4 text-center">
+        <a class="blog-header-logo text-dark" href="../index.html">ExStatic</a>
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center"></div>
+    </div>
+  </header>
+
+  <div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between"></nav>
+  </div>
+</div>
+
+<main class="container">
+<main class="container">
+  <div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow-sm shadow-hover position-relative mb-3">
+        <div class="card-body">
+          <p class="mb-1">
+            <strong class="text-primary">
+#Phoenix
+            </strong>
+          </p>
+          <h3 class="card-title mb-2">An Elixir and Phoenix based static site generator in one line of code</h3>
+
+          <p class="card-text mb-1 text-muted">2023-11-18</p>
+          <hr>
+          <div class="article-body">
+<p>
+If you already are an Elixir developper, you have pretty solid static site builder that comes with all the power features of Elixir and Phoenix! It’s just one line of code:</p>
+<pre><code>wget -r -k -E -P public/ --no-host-directories http://localhost:4000/</code></pre>
+<p>
+It’s actually not even Elixir code 😅. The concept is pretty simple: build the site locally with your favorite web framework, run a webserver, mirror a full copy with WGET, then upload the result to a static hosting provider. The idea is <a href="https://www.eddymens.com/blog/how-to-build-your-own-static-site-generator">nothing new</a>. I’m sure there are many other examples using various web frameworks. But as I needed to host a static website for a project, I wanted to give this approach a try with Phoenix.</p>
+<h2>
+But… why not use Jekyll of Hugo or a specialized static site buider?</h2>
+<p>
+Well, simply because I like the development environment of Elixir and Phoenix. It comes with with great toolings, even for building static sites:</p>
+<ul>
+  <li>
+Bundling/Minification/Integrity/Cache Busting for you Javascript and CSS  </li>
+  <li>
+Live Code reloading in development  </li>
+  <li>
+Super robust HTML formatting (HEEX) that ensures the HTML you produce is valid  </li>
+  <li>
+Internationalization and localization support (Gettext and CLDR)  </li>
+  <li>
+Great integration with VS Code  </li>
+  <li>
+Support for all the generic themes and templates you may found on the internet  </li>
+</ul>
+<p>
+And the main advantage of this approach is that you don’t need to learn and rely on a new stack! Jekyll or Hugo are great, but… they are still <em>additional</em> tools that you need to master, with their own ecosystems, configuration details, plugins, caveats and so on. Plus if you need to go a little bit “offroad”, like having something a little bit more complex than a blog with basic posts, you might end up struggling more than with a generic web framework.</p>
+<p>
+So anyway, here is how to build a static site with Phoenix, and publish it on Github Pages through Github Action, with all the configuration and plumbing details.</p>
+<h2>
+Phoenix configuration</h2>
+<p>
+Generate a new phoenix site with minimal “dynamic” features (ecto / live)</p>
+<pre><code class="sh">mix phx.new ex_static --no-dashboard --no-ecto --no-live --no-mailer</code></pre>
+<p>
+In <code class="inline">prod.exs</code> file you will need to add the <code class="inline">cache_manifest_skip_vsn: true</code> option to the endpoint configuration
+(cf: <a href="https://hexdocs.pm/phoenix/Phoenix.Endpoint.html#module-runtime-configuration">https://hexdocs.pm/phoenix/Phoenix.Endpoint.html#module-runtime-configuration</a>)</p>
+<pre><code class="makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:ex_static</span><span class="p">,</span><span class="w"> </span><span class="nc">ExStaticWeb.Endpoint</span><span class="p">,</span><span class="w">
+  </span><span class="ss">cache_static_manifest</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;priv/static/cache_manifest.json&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">cache_manifest_skip_vsn</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w"> </span><span class="c1"># &lt;- here</span></code></pre>
+<p>
+For a standard Phoenix app, we have a <code class="inline">runtime.exs</code> file to read environment variables and configure the application at runtime. But for a static site, there is no need for that. You can have reasonable default values in the <code class="inline">runtime.exs</code>, so that we don’t have to specify them when generating the static site. So the <code class="inline">SECRET_KEY_BASE</code> and <code class="inline">PHX_HOST</code> for instance can be hardcoded in <code class="inline">runtime.exs</code>.</p>
+<pre><code class="makeup elixir"><span class="w">  </span><span class="n">secret_key_base</span><span class="w"> </span><span class="o">=</span><span class="w">
+    </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="4473586509-1">(</span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="4473586509-1">)</span><span class="w"> </span><span class="o">||</span><span class="w">
+      </span><span class="s">&quot;zigxtDrIex/lvxu3MG2JdrQANICNR6mzfI8PxXjk1uHi3jtVKB7cmATd8JlitRSm&quot;</span><span class="w"> </span><span class="c1"># &lt;- generated using mix phx.gen.secret</span><span class="w">
+  </span><span class="n">...</span><span class="w">
+
+  </span><span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="4473586509-2">(</span><span class="s">&quot;PHX_HOST&quot;</span><span class="p" data-group-id="4473586509-2">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span></code></pre>
+<p>
+<em>Note: I’m hardcoding things like this, so that if I ever need to make my site dynamic after all, I can easily “convert it”…</em></p>
+<h2>
+The build script</h2>
+<p>
+The build script responsability is to generate the static pages of the site into a <code class="inline">public</code> folder at the root of the project. It will essentially:</p>
+<ol>
+  <li>
+compile and release the Elixir project  </li>
+  <li>
+run the server  </li>
+  <li>
+run <code class="inline">wget</code> to mirror the site into the <code class="inline">public</code> directory  </li>
+  <li>
+stop the server  </li>
+</ol>
+<p>
+Here is the full <code class="inline">build.sh</code> script to place at the root of the project:</p>
+<pre><code class="sh">#!/bin/bash
+
+
+# 0. Clean previous run
+rm -rf public/
+
+# 1. Compile and release the site
+mix deps.get --only prod
+MIX_ENV=prod mix deps.compile
+MIX_ENV=prod mix assets.deploy
+MIX_ENV=prod mix compile
+echo y |MIX_ENV=prod mix release
+
+# 2. Start the server
+_build/prod/rel/ex_static/bin/ex_static daemon
+sleep 2
+
+# 3. Mirror the site
+# cf Wget options: https://www.man7.org/linux/man-pages/man1/wget.1.html
+# -r (or --recursive) Recursive retrieving. The default maximum depth is 5
+# -k (or --convert-links) will convert links in the web pages to relative after the download finishes
+# -E (or --adjust-extension) If a file of type application/xhtml+xml or text/html is
+#   downloaded and the URL does not end with the regexp
+#   \.[Hh][Tt][Mm][Ll]?, this option will cause the suffix .html
+#   to be appended to the local filename.
+# -P (or --directory-prefix) the directory where all other files and subdirectories will be saved to
+# --no-host-directories Disable generation of host-prefixed directories
+#   (no additional http://localhost:4000/ directory created,
+#   files will be saved directly in the directory specified in the -P argument)
+wget -r -k -E -P public/ --no-host-directories http://localhost:4000/
+
+# 4. Stop the server
+_build/prod/rel/ex_static/bin/ex_static stop</code></pre>
+<p>
+Change the file permission to allow it’s execution:</p>
+<pre><code class="sh">chmod +x build.sh</code></pre>
+<p>
+And… thats’s it! Running this script will generate the static site in the <code class="inline">public/</code> directory. You can already upload the whole directory to your host server, Netlify or Github Page environment manually.</p>
+<h2>
+Publish to Github pages using Github Action</h2>
+<p>
+The next improvement is to automate the publishing process. So lets publish it on every push on Github Pages with a Github Action workflow. This suppose you already have a git repository and a basic Github setup (you might need to activate Github Pages and the “Deploy from a branch: gh-pages” option in the settings of the project).</p>
+<p>
+Add the build artefacts to the <code class="inline">.gitignore</code> file to avoid commiting unwanted files to your source repository:</p>
+<pre><code># Ignore directory where the site is generated
+/public
+
+# Ignore digested assets cache
+/priv/static/**/*.gz
+/priv/static/**/*-????????????????????????????????.*</code></pre>
+<p>
+And add this <code class="inline">.github/workflows/gh-pages.yml</code> workflow file into your project:</p>
+<pre><code class="yml">name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Set a branch name to trigger deployment
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      # Step: Setup Elixir + Erlang image as the base.
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: &#39;26.1.2&#39;
+          elixir-version: &#39;1.15.7&#39;
+      - uses: actions/checkout@v3
+
+      # Step: Define how to cache deps. Restores existing cache if present.
+      - name: Cache deps
+        id: cache-deps
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-elixir-deps
+        with:
+          path: deps
+          key: ${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles(&#39;**/mix.lock&#39;) }}
+          restore-keys: |
+            ${{ runner.os }}-mix-${{ env.cache-name }}-
+
+      # Step: Define how to cache the `_build` directory. After the first run,
+      # this speeds up tests runs a lot. This includes not re-compiling our
+      # project&#39;s downloaded deps every run.
+      - name: Cache compiled build
+        id: cache-build
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-compiled-build
+        with:
+          path: _build
+          key: ${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles(&#39;**/mix.lock&#39;) }}
+          restore-keys: |
+            ${{ runner.os }}-mix-${{ env.cache-name }}-
+            ${{ runner.os }}-mix-
+
+      # Step: Run app and build static site using the previous build script
+      - name: Build site
+        run: ./build.sh
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        # If you&#39;re changing the branch from main,
+        # also change the `main` in `refs/heads/main`
+        # below accordingly.
+        if: github.ref == &#39;refs/heads/main&#39;
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public</code></pre>
+<p>
+And you should be done: a <code class="inline">git push</code> on the main branch should update your static site.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</main>
+
+<footer class="footer"></footer>
+  </body>
+</html>
