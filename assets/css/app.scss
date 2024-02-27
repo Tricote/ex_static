@@ -12,11 +12,17 @@
 
 /* This file is for your main application CSS */
 
-.article-body p {
-  margin-bottom: 1.6em;
-  line-height: 1.8em;
-}
+.article-body {
+  p {
+    margin-bottom: 1.6em;
+    line-height: 1.8em;
+  }
 
-.article-body pre {
-  margin-bottom: 1.6em;
+  pre {
+    margin-bottom: 1.6em;
+  }
+
+  img {
+    max-width: 100%;
+  }
 }
