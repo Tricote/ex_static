@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="CRVkXiUKKSFiXkxOahpKCU8aPBQILBA3JJ5-_NcR8h6y8JrqzVrWeKIs">
+    <title data-suffix=" · Phoenix Framework">
+ExStatic
+     · Phoenix Framework</title>
+    <link phx-track-static rel="stylesheet" href="../assets/app-b45bcbdb793734d903485d464c21ceb5.css">
+    <script defer phx-track-static type="text/javascript" src="../assets/app-63c815f0894ce301efe8d07ba30e3cd6.js">
+    </script>
+  </head>
+  <body class="bg-white antialiased">
+<div class="container">
+  <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-4 pt-1"></div>
+      <div class="col-4 text-center">
+        <a class="blog-header-logo text-dark" href="../index.html">ExStatic</a>
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center"></div>
+    </div>
+  </header>
+
+  <div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between"></nav>
+  </div>
+</div>
+
+<main class="container">
+<main class="container">
+  <div class="row mb-5">
+    <div class="col-md-9">
+      <div class="card shadow-sm shadow-hover position-relative mb-3">
+        <div class="card-body">
+          <p class="mb-1">
+            <strong class="text-primary">
+#Phoenix
+            </strong>
+          </p>
+          <h3 class="card-title mb-2">A Phoenix component to display a Table of Content (TOC) for an html document</h3>
+
+          <p class="card-text mb-1 text-muted">2024-03-22</p>
+          <hr>
+          <div class="article-body">
+<p>
+A table of contents (TOC) is the list of links to sections (headings) of a document. It helps to better navigate large documents. But it would be obviously painful to write this by hand, so here is a Phoenix Component to automatically generate and display a TOC for any HTML document.</p>
+<h2 id="overview">
+High level overview</h2>
+<p>
+The idea is to parse the html document to produce a <code class="inline">Toc</code> Struct based on the document headings <strong>that have an id attribute</strong> (ids are required to build the anchor links to the headings).</p>
+<p>
+The <code class="inline">Toc</code> Struct is a tree-like structure to reflect the levels of the headings in the table of content: for instance <code class="inline">&lt;h3&gt;</code> tags located after <code class="inline">&lt;h2&gt;</code> in the document will be represented as children <code class="inline">Toc</code> struct of the parent <code class="inline">&lt;h2&gt;</code>‘s <code class="inline">Toc</code> struct.</p>
+<pre><code class="makeup elixir"><span class="p" data-group-id="9051804410-1">[</span><span class="w">
+  </span><span class="p" data-group-id="9051804410-2">%</span><span class="nc" data-group-id="9051804410-2">Toc</span><span class="p" data-group-id="9051804410-2">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">toc_level</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">children</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9051804410-3">[</span><span class="w">
+    </span><span class="p" data-group-id="9051804410-4">%</span><span class="nc" data-group-id="9051804410-4">Toc</span><span class="p" data-group-id="9051804410-4">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Crazy&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">toc_level</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">children</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9051804410-5">[</span><span class="p" data-group-id="9051804410-5">]</span><span class="p" data-group-id="9051804410-4">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="9051804410-6">%</span><span class="nc" data-group-id="9051804410-6">Toc</span><span class="p" data-group-id="9051804410-6">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;baz&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;World&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">toc_level</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">children</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9051804410-7">[</span><span class="p" data-group-id="9051804410-7">]</span><span class="p" data-group-id="9051804410-6">}</span><span class="w">
+  </span><span class="p" data-group-id="9051804410-3">]</span><span class="p" data-group-id="9051804410-2">}</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="9051804410-8">%</span><span class="nc" data-group-id="9051804410-8">Toc</span><span class="p" data-group-id="9051804410-8">{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;boo&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Byebye&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">toc_level</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">children</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9051804410-9">[</span><span class="p" data-group-id="9051804410-9">]</span><span class="p" data-group-id="9051804410-8">}</span><span class="w">
+</span><span class="p" data-group-id="9051804410-1">]</span></code></pre>
+<p>
+The <code class="inline">TocComponent</code> uses this <code class="inline">Toc</code> Struct to to build the HTML table of content.</p>
+<p>
+The output of the component looks like this (notice the nested <code class="inline">&lt;ul&gt;</code> tags to reflect the different headings levels) :</p>
+<pre><code class="makeup html"><span class="p" data-group-id="6158475643-1">&lt;</span><span class="k">ul</span><span class="w"> </span><span class="na">class</span><span class="o">=</span><span class="s">&quot;toc&quot;</span><span class="p" data-group-id="6158475643-1">&gt;</span><span class="s">
+  </span><span class="p" data-group-id="6158475643-2">&lt;</span><span class="k">li</span><span class="p" data-group-id="6158475643-2">&gt;</span><span class="p" data-group-id="6158475643-3">&lt;</span><span class="k">a</span><span class="w"> </span><span class="na">href</span><span class="o">=</span><span class="s">&quot;#heading-1&quot;</span><span class="p" data-group-id="6158475643-3">&gt;</span><span class="s">Heading 1</span><span class="p" data-group-id="6158475643-4">&lt;/</span><span class="k">a</span><span class="p" data-group-id="6158475643-4">&gt;</span><span class="p" data-group-id="6158475643-5">&lt;/</span><span class="k">li</span><span class="p" data-group-id="6158475643-5">&gt;</span><span class="s">
+  </span><span class="p" data-group-id="6158475643-6">&lt;</span><span class="k">li</span><span class="p" data-group-id="6158475643-6">&gt;</span><span class="p" data-group-id="6158475643-7">&lt;</span><span class="k">a</span><span class="w"> </span><span class="na">href</span><span class="o">=</span><span class="s">&quot;#heading-2&quot;</span><span class="p" data-group-id="6158475643-7">&gt;</span><span class="s">Heading 2</span><span class="p" data-group-id="6158475643-8">&lt;/</span><span class="k">a</span><span class="p" data-group-id="6158475643-8">&gt;</span><span class="s">
+    </span><span class="p" data-group-id="6158475643-9">&lt;</span><span class="k">ul</span><span class="w"> </span><span class="na">class</span><span class="o">=</span><span class="s">&quot;toc&quot;</span><span class="p" data-group-id="6158475643-9">&gt;</span><span class="s">
+      </span><span class="p" data-group-id="6158475643-10">&lt;</span><span class="k">li</span><span class="p" data-group-id="6158475643-10">&gt;</span><span class="p" data-group-id="6158475643-11">&lt;</span><span class="k">a</span><span class="w"> </span><span class="na">href</span><span class="o">=</span><span class="s">&quot;#heading-2.1&quot;</span><span class="p" data-group-id="6158475643-11">&gt;</span><span class="s">Heading 2.1</span><span class="p" data-group-id="6158475643-12">&lt;/</span><span class="k">a</span><span class="p" data-group-id="6158475643-12">&gt;</span><span class="p" data-group-id="6158475643-13">&lt;/</span><span class="k">li</span><span class="p" data-group-id="6158475643-13">&gt;</span><span class="s">
+      </span><span class="p" data-group-id="6158475643-14">&lt;</span><span class="k">li</span><span class="p" data-group-id="6158475643-14">&gt;</span><span class="p" data-group-id="6158475643-15">&lt;</span><span class="k">a</span><span class="w"> </span><span class="na">href</span><span class="o">=</span><span class="s">&quot;#heading-2.2&quot;</span><span class="p" data-group-id="6158475643-15">&gt;</span><span class="s">Heading 2.2</span><span class="p" data-group-id="6158475643-16">&lt;/</span><span class="k">a</span><span class="p" data-group-id="6158475643-16">&gt;</span><span class="p" data-group-id="6158475643-17">&lt;/</span><span class="k">li</span><span class="p" data-group-id="6158475643-17">&gt;</span><span class="s">
+    </span><span class="p" data-group-id="6158475643-18">&lt;/</span><span class="k">ul</span><span class="p" data-group-id="6158475643-18">&gt;</span><span class="s">
+  </span><span class="p" data-group-id="6158475643-19">&lt;/</span><span class="k">li</span><span class="p" data-group-id="6158475643-19">&gt;</span><span class="s">
+  </span><span class="p" data-group-id="6158475643-20">&lt;</span><span class="k">li</span><span class="p" data-group-id="6158475643-20">&gt;</span><span class="p" data-group-id="6158475643-21">&lt;</span><span class="k">a</span><span class="w"> </span><span class="na">href</span><span class="o">=</span><span class="s">&quot;#heading-3&quot;</span><span class="p" data-group-id="6158475643-21">&gt;</span><span class="s">Heading 3</span><span class="p" data-group-id="6158475643-22">&lt;/</span><span class="k">a</span><span class="p" data-group-id="6158475643-22">&gt;</span><span class="p" data-group-id="6158475643-23">&lt;/</span><span class="k">li</span><span class="p" data-group-id="6158475643-23">&gt;</span><span class="s">
+</span><span class="p" data-group-id="6158475643-24">&lt;/</span><span class="k">ul</span><span class="p" data-group-id="6158475643-24">&gt;</span></code></pre>
+<h2 id="code">
+The code</h2>
+<p>
+The module that builds the <code class="inline">Toc</code> Struct from the HTML document.</p>
+<pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">CMS.Toc</span><span class="w"> </span><span class="k" data-group-id="8844375515-1">do</span><span class="w">
+  </span><span class="na">@enforce_keys</span><span class="w"> </span><span class="p" data-group-id="8844375515-2">[</span><span class="ss">:id</span><span class="p">,</span><span class="w"> </span><span class="ss">:title</span><span class="p">,</span><span class="w"> </span><span class="ss">:toc_level</span><span class="p" data-group-id="8844375515-2">]</span><span class="w">
+  </span><span class="kd">defstruct</span><span class="w"> </span><span class="p" data-group-id="8844375515-3">[</span><span class="ss">:id</span><span class="p">,</span><span class="w"> </span><span class="ss">:title</span><span class="p">,</span><span class="w"> </span><span class="ss">:toc_level</span><span class="p">,</span><span class="w"> </span><span class="ss">children</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8844375515-4">[</span><span class="p" data-group-id="8844375515-4">]</span><span class="p" data-group-id="8844375515-3">]</span><span class="w">
+
+  </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;&quot;&quot;
+  Build Table Of Content (TOC) from an html document.
+
+  Parse all headings tags (h1, h2, ...) and produce a recursive
+  TOC Struct that can be used to create a HTML TOC
+
+  ## Examples:
+      iex&gt; build_from_html(&quot;&lt;h1 id=&#39;foo&#39;&gt;Hello&lt;/h1&gt;&lt;h1 id=&#39;bar&#39;&gt;World&lt;/h1&gt;&quot;)
+      [
+        %Toc{id: &quot;foo&quot;, title: &quot;Hello&quot;, toc_level: 1, children: []},
+        %Toc{id: &quot;bar&quot;, title: &quot;World&quot;, toc_level: 1, children: []}
+      ]
+
+      iex&gt; build_from_html(~s(
+      ...&gt;   &lt;h1 id=&#39;foo&#39;&gt;Hello&lt;/h1&gt;
+      ...&gt;     &lt;h2 id=&#39;bar&#39;&gt;Crazy&lt;/h2&gt;
+      ...&gt;     &lt;h2 id=&#39;baz&#39;&gt;World&lt;/h2&gt;
+      ...&gt;   &lt;h1 id=&#39;boo&#39;&gt;Byebye&lt;/h1&gt;
+      ...&gt;  ))
+      [
+        %Toc{id: &quot;foo&quot;, title: &quot;Hello&quot;, toc_level: 1, children: [
+          %Toc{id: &quot;bar&quot;, title: &quot;Crazy&quot;, toc_level: 2, children: []},
+          %Toc{id: &quot;baz&quot;, title: &quot;World&quot;, toc_level: 2, children: []}
+        ]},
+        %Toc{id: &quot;boo&quot;, title: &quot;Byebye&quot;, toc_level: 1, children: []}
+      ]
+  &quot;&quot;&quot;</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">build_from_html</span><span class="p" data-group-id="8844375515-5">(</span><span class="n">html</span><span class="p" data-group-id="8844375515-5">)</span><span class="w"> </span><span class="k" data-group-id="8844375515-6">do</span><span class="w">
+    </span><span class="p" data-group-id="8844375515-7">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">document</span><span class="p" data-group-id="8844375515-7">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Floki</span><span class="o">.</span><span class="n">parse_document</span><span class="p" data-group-id="8844375515-8">(</span><span class="n">html</span><span class="p" data-group-id="8844375515-8">)</span><span class="w">
+
+    </span><span class="n">find_headers</span><span class="p" data-group-id="8844375515-9">(</span><span class="n">document</span><span class="p" data-group-id="8844375515-9">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p" data-group-id="8844375515-10">(</span><span class="p" data-group-id="8844375515-11">[</span><span class="p" data-group-id="8844375515-11">]</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">handle_heading</span><span class="o">/</span><span class="mi">2</span><span class="p" data-group-id="8844375515-10">)</span><span class="w">
+  </span><span class="k" data-group-id="8844375515-6">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">find_headers</span><span class="p" data-group-id="8844375515-12">(</span><span class="n">document</span><span class="p" data-group-id="8844375515-12">)</span><span class="w"> </span><span class="k" data-group-id="8844375515-13">do</span><span class="w">
+    </span><span class="n">document</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Floki</span><span class="o">.</span><span class="n">find</span><span class="p" data-group-id="8844375515-14">(</span><span class="s">&quot;*&quot;</span><span class="p" data-group-id="8844375515-14">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">filter</span><span class="p" data-group-id="8844375515-15">(</span><span class="o">&amp;</span><span class="n">match?</span><span class="p" data-group-id="8844375515-16">(</span><span class="p" data-group-id="8844375515-17">{</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="c">_attrs</span><span class="p">,</span><span class="w"> </span><span class="c">_nodes</span><span class="p" data-group-id="8844375515-17">}</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="sx">~w(h1 h2 h3 h4 h5)</span><span class="p">,</span><span class="w"> </span><span class="ni">&amp;1</span><span class="p" data-group-id="8844375515-16">)</span><span class="p" data-group-id="8844375515-15">)</span><span class="w">
+  </span><span class="k" data-group-id="8844375515-13">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">handle_heading</span><span class="p" data-group-id="8844375515-18">(</span><span class="n">heading_tuple</span><span class="p">,</span><span class="w"> </span><span class="n">toc_items_list_acc</span><span class="p" data-group-id="8844375515-18">)</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">handle_heading</span><span class="p" data-group-id="8844375515-19">(</span><span class="p" data-group-id="8844375515-20">{</span><span class="n">tag</span><span class="p">,</span><span class="w"> </span><span class="n">attributes</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8844375515-21">[</span><span class="n">title</span><span class="p" data-group-id="8844375515-21">]</span><span class="p" data-group-id="8844375515-20">}</span><span class="p">,</span><span class="w"> </span><span class="n">toc_items_list_acc</span><span class="p" data-group-id="8844375515-19">)</span><span class="w"> </span><span class="k" data-group-id="8844375515-22">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">find</span><span class="p" data-group-id="8844375515-23">(</span><span class="n">attributes</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8844375515-24">{</span><span class="ss">:no_id</span><span class="p">,</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="8844375515-24">}</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">match?</span><span class="p" data-group-id="8844375515-25">(</span><span class="p" data-group-id="8844375515-26">{</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="8844375515-26">}</span><span class="p">,</span><span class="w"> </span><span class="ni">&amp;1</span><span class="p" data-group-id="8844375515-25">)</span><span class="p" data-group-id="8844375515-23">)</span><span class="w"> </span><span class="k" data-group-id="8844375515-27">do</span><span class="w">
+      </span><span class="p" data-group-id="8844375515-28">{</span><span class="ss">:no_id</span><span class="p">,</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="8844375515-28">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">toc_items_list_acc</span><span class="w">
+
+      </span><span class="p" data-group-id="8844375515-29">{</span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="8844375515-29">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">toc_item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">%</span><span class="bp">__MODULE__</span><span class="p" data-group-id="8844375515-30">{</span><span class="w">
+          </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w">
+          </span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w">
+          </span><span class="ss">toc_level</span><span class="p">:</span><span class="w"> </span><span class="n">get_toc_level</span><span class="p" data-group-id="8844375515-31">(</span><span class="n">tag</span><span class="p" data-group-id="8844375515-31">)</span><span class="p">,</span><span class="w">
+          </span><span class="ss">children</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8844375515-32">[</span><span class="p" data-group-id="8844375515-32">]</span><span class="w">
+        </span><span class="p" data-group-id="8844375515-30">}</span><span class="w">
+
+        </span><span class="n">add_toc_item</span><span class="p" data-group-id="8844375515-33">(</span><span class="n">toc_item</span><span class="p">,</span><span class="w"> </span><span class="n">toc_items_list_acc</span><span class="p" data-group-id="8844375515-33">)</span><span class="w">
+    </span><span class="k" data-group-id="8844375515-27">end</span><span class="w">
+  </span><span class="k" data-group-id="8844375515-22">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">add_toc_item</span><span class="p" data-group-id="8844375515-34">(</span><span class="n">toc_item</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8844375515-35">[</span><span class="p" data-group-id="8844375515-35">]</span><span class="p" data-group-id="8844375515-34">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8844375515-36">[</span><span class="n">toc_item</span><span class="p" data-group-id="8844375515-36">]</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">add_toc_item</span><span class="p" data-group-id="8844375515-37">(</span><span class="n">toc_item</span><span class="p">,</span><span class="w"> </span><span class="n">toc_items_list</span><span class="p" data-group-id="8844375515-37">)</span><span class="w"> </span><span class="k" data-group-id="8844375515-38">do</span><span class="w">
+    </span><span class="p" data-group-id="8844375515-39">[</span><span class="n">last_toc_item</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">previous_toc_items</span><span class="p" data-group-id="8844375515-39">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toc_items_list</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">reverse</span><span class="p" data-group-id="8844375515-40">(</span><span class="p" data-group-id="8844375515-40">)</span><span class="w">
+
+    </span><span class="n">last_toc_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">last_toc_item</span><span class="o">.</span><span class="n">toc_level</span><span class="w">
+
+    </span><span class="k">case</span><span class="w"> </span><span class="n">toc_item</span><span class="o">.</span><span class="n">toc_level</span><span class="w"> </span><span class="k" data-group-id="8844375515-41">do</span><span class="w">
+      </span><span class="n">toc_level</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">toc_level</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">last_toc_level</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">last_toc_item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8844375515-42">%{</span><span class="w">
+          </span><span class="n">last_toc_item</span><span class="w">
+          </span><span class="o">|</span><span class="w"> </span><span class="ss">children</span><span class="p">:</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="8844375515-43">(</span><span class="n">last_toc_item</span><span class="p">,</span><span class="w"> </span><span class="ss">:children</span><span class="p" data-group-id="8844375515-43">)</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p" data-group-id="8844375515-44">[</span><span class="n">toc_item</span><span class="p" data-group-id="8844375515-44">]</span><span class="w">
+        </span><span class="p" data-group-id="8844375515-42">}</span><span class="w">
+
+        </span><span class="n">previous_toc_items</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p" data-group-id="8844375515-45">[</span><span class="n">last_toc_item</span><span class="p" data-group-id="8844375515-45">]</span><span class="w">
+
+      </span><span class="n">toc_level</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">toc_level</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">last_toc_level</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">toc_items_list</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p" data-group-id="8844375515-46">[</span><span class="n">toc_item</span><span class="p" data-group-id="8844375515-46">]</span><span class="w">
+    </span><span class="k" data-group-id="8844375515-41">end</span><span class="w">
+  </span><span class="k" data-group-id="8844375515-38">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">get_toc_level</span><span class="p" data-group-id="8844375515-47">(</span><span class="n">tag</span><span class="p" data-group-id="8844375515-47">)</span><span class="w"> </span><span class="k" data-group-id="8844375515-48">do</span><span class="w">
+    </span><span class="p" data-group-id="8844375515-49">{</span><span class="n">heading_level</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="8844375515-49">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Integer</span><span class="o">.</span><span class="n">parse</span><span class="p" data-group-id="8844375515-50">(</span><span class="nc">String</span><span class="o">.</span><span class="n">last</span><span class="p" data-group-id="8844375515-51">(</span><span class="n">tag</span><span class="p" data-group-id="8844375515-51">)</span><span class="p" data-group-id="8844375515-50">)</span><span class="w">
+    </span><span class="n">heading_level</span><span class="w">
+  </span><span class="k" data-group-id="8844375515-48">end</span><span class="w">
+</span><span class="k" data-group-id="8844375515-1">end</span><span class="w">
+</span></code></pre>
+<p>
+And the related Phoenix component:</p>
+<pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">CMS.TocComponent</span><span class="w"> </span><span class="k" data-group-id="5894608094-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Phoenix.Component</span><span class="w">
+
+  </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;&quot;&quot;
+  Renders a Table of Content
+
+  ## Examples
+
+      &lt;.toc toc_items={toc_items} /&gt;
+      &lt;.toc toc_items={toc_items} max_level={1} wrapper_class=&quot;toc&quot; item_class=&quot;mb-2&quot; /&gt;
+  &quot;&quot;&quot;</span><span class="w">
+  </span><span class="n">attr</span><span class="p" data-group-id="5894608094-2">(</span><span class="ss">:toc_items</span><span class="p">,</span><span class="w"> </span><span class="ss">:any</span><span class="p">,</span><span class="w"> </span><span class="ss">required</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="5894608094-2">)</span><span class="w">
+  </span><span class="n">attr</span><span class="p" data-group-id="5894608094-3">(</span><span class="ss">:max_heading_level</span><span class="p">,</span><span class="w"> </span><span class="ss">:any</span><span class="p">,</span><span class="w"> </span><span class="ss">default</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="5894608094-3">)</span><span class="w">
+  </span><span class="n">attr</span><span class="p" data-group-id="5894608094-4">(</span><span class="ss">:wrapper_class</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="p">,</span><span class="w"> </span><span class="ss">default</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p" data-group-id="5894608094-4">)</span><span class="w">
+  </span><span class="n">attr</span><span class="p" data-group-id="5894608094-5">(</span><span class="ss">:item_class</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="p">,</span><span class="w"> </span><span class="ss">default</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p" data-group-id="5894608094-5">)</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">toc</span><span class="p" data-group-id="5894608094-6">(</span><span class="n">assigns</span><span class="p" data-group-id="5894608094-6">)</span><span class="w"> </span><span class="k" data-group-id="5894608094-7">do</span><span class="w">
+    </span><span class="sx">~H&quot;&quot;&quot;
+    &lt;ul :if={!Enum.empty?(@toc_items)} class={[@wrapper_class]}&gt;
+      &lt;%= for toc_item &lt;- @toc_items do %&gt;
+        &lt;%= render_toc_item(assigns, toc_item) %&gt;
+      &lt;% end %&gt;
+    &lt;/ul&gt;
+    &quot;&quot;&quot;</span><span class="w">
+  </span><span class="k" data-group-id="5894608094-7">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">render_toc_item</span><span class="p" data-group-id="5894608094-8">(</span><span class="n">assigns</span><span class="p">,</span><span class="w"> </span><span class="n">toc_item</span><span class="p" data-group-id="5894608094-8">)</span><span class="w"> </span><span class="k" data-group-id="5894608094-9">do</span><span class="w">
+    </span><span class="n">assigns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="5894608094-10">(</span><span class="n">assigns</span><span class="p">,</span><span class="w"> </span><span class="ss">:toc_item</span><span class="p">,</span><span class="w"> </span><span class="n">toc_item</span><span class="p" data-group-id="5894608094-10">)</span><span class="w">
+
+    </span><span class="sx">~H&quot;&quot;&quot;
+    &lt;li :if={@toc_item.toc_level &lt;= @max_heading_level} class={[@item_class]}&gt;
+      &lt;.link href={&quot;#&quot; &lt;&gt; @toc_item.id}&gt;&lt;%= @toc_item.title %&gt;&lt;/.link&gt;
+      &lt;ul
+        :if={!Enum.empty?(@toc_item.children) and @toc_item.toc_level &lt; @max_heading_level}
+        class={[@wrapper_class]}
+      &gt;
+        &lt;%= for child_toc_item &lt;- @toc_item.children do %&gt;
+          &lt;%= render_toc_item(assigns, child_toc_item) %&gt;
+        &lt;% end %&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &quot;&quot;&quot;</span><span class="w">
+  </span><span class="k" data-group-id="5894608094-9">end</span><span class="w">
+</span><span class="k" data-group-id="5894608094-1">end</span></code></pre>
+<p>
+Note that it is somehow a “recursive component”.</p>
+<h2 id="usage">
+Usage exmemple</h2>
+<p>
+Build the <code class="inline">Toc</code> in your controller:</p>
+<pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyAppWeb.ArticleController</span><span class="w"> </span><span class="k" data-group-id="8059593538-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">CancerConsultWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
+  </span><span class="c1"># ...</span><span class="w">
+  </span><span class="kn">alias</span><span class="w"> </span><span class="nc">CancerConsult.Articles.Toc</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">show</span><span class="p" data-group-id="8059593538-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="8059593538-2">)</span><span class="w"> </span><span class="k" data-group-id="8059593538-3">do</span><span class="w">
+    </span><span class="n">acrticle_content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&lt;h1 ...&gt;....&lt;h1&gt;&quot;</span><span class="w">
+    </span><span class="n">toc_items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Toc</span><span class="o">.</span><span class="n">build_from_html</span><span class="p" data-group-id="8059593538-4">(</span><span class="n">acrticle_content</span><span class="p" data-group-id="8059593538-4">)</span><span class="w">
+
+    </span><span class="n">conn</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">render</span><span class="p" data-group-id="8059593538-5">(</span><span class="ss">:show</span><span class="p">,</span><span class="w">
+      </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="n">content</span><span class="p">,</span><span class="w">
+      </span><span class="ss">toc_items</span><span class="p">:</span><span class="w"> </span><span class="n">toc_items</span><span class="w">
+    </span><span class="p" data-group-id="8059593538-5">)</span><span class="w">
+  </span><span class="k" data-group-id="8059593538-3">end</span><span class="w">
+</span><span class="k" data-group-id="8059593538-1">end</span></code></pre>
+<p>
+And use the component in your heex template:</p>
+<pre><code class="makeup html"><span class="p" data-group-id="6620375199-1">&lt;</span><span class="s">TocComponent.toc</span><span class="w"> </span><span class="s">toc_items</span><span class="o">=</span><span class="s">{@toc_items}</span><span class="w"> </span><span class="s">max_heading_level</span><span class="o">=</span><span class="s">{3}</span><span class="w"> </span><span class="p" data-group-id="6620375199-1">/&gt;</span></code></pre>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card sticky-top shadow-sm shadow-hover mb-3" style="top: 20px;">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Table of content</h5>
+          <hr>
+          <ul class="list-unstyled">
+  
+    <li class="mb-2">
+  <a href="generate-a-toc-for-an-html-article.html#overview">
+High level overview</a>
+  
+</li>
+  
+    <li class="mb-2">
+  <a href="generate-a-toc-for-an-html-article.html#code">
+The code</a>
+  
+</li>
+  
+    <li class="mb-2">
+  <a href="generate-a-toc-for-an-html-article.html#usage">
+Usage exmemple</a>
+  
+</li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+</main>
+
+<footer class="footer"></footer>
+  </body>
+</html>

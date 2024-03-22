@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="M1k3LlY-YBcGAH8wIww0IEA3Gl5iNFB2v7VH2sUv0lHrk9rAxdNkSca2">
+    <meta name="csrf-token" content="MHJjAzMNOUEWDxB9ACoAN0wmNHIqLjYhs-2pIIs2L9jJRz8Oyjz1GIoe">
     <title data-suffix=" · Phoenix Framework">
 ExStatic
      · Phoenix Framework</title>
@@ -46,11 +46,11 @@ ExStatic
           <div class="article-body">
 <p>
 In <code class="inline">mix.exs</code>, removes the <code class="inline">tailwind</code> library and add the <code class="inline">dart_saas</code> library:</p>
-<pre><code class="makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="4201385343-1">do</span><span class="w">
-  </span><span class="p" data-group-id="4201385343-2">[</span><span class="w">
+<pre><code class="makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="6219599973-1">do</span><span class="w">
+  </span><span class="p" data-group-id="6219599973-2">[</span><span class="w">
     </span><span class="c1"># ...</span><span class="w">
     </span><span class="c1"># {:tailwind, &quot;~&gt; 0.2.0&quot;, runtime: Mix.env() == :dev},</span><span class="w">
-    </span><span class="p" data-group-id="4201385343-3">{</span><span class="ss">:dart_sass</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 0.6&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">runtime</span><span class="p">:</span><span class="w"> </span><span class="nc">Mix</span><span class="o">.</span><span class="n">env</span><span class="p" data-group-id="4201385343-4">(</span><span class="p" data-group-id="4201385343-4">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:dev</span><span class="p" data-group-id="4201385343-3">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="6219599973-3">{</span><span class="ss">:dart_sass</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 0.6&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">runtime</span><span class="p">:</span><span class="w"> </span><span class="nc">Mix</span><span class="o">.</span><span class="n">env</span><span class="p" data-group-id="6219599973-4">(</span><span class="p" data-group-id="6219599973-4">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:dev</span><span class="p" data-group-id="6219599973-3">}</span><span class="p">,</span><span class="w">
     </span><span class="c1"># ...</span><span class="w">
   </span><span class="err">}</span><span class="w">
 </span><span class="k">end</span></code></pre>
@@ -60,18 +60,18 @@ Add the bootstrap package</p>
 npm install bootstrap</code></pre>
 <p>
 In <code class="inline">mix.exs</code>, replace tailwind build command with the npm and saas command:</p>
-<pre><code class="makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">aliases</span><span class="w"> </span><span class="k" data-group-id="1045471362-1">do</span><span class="w">
-  </span><span class="p" data-group-id="1045471362-2">[</span><span class="w">
-    </span><span class="ss">setup</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1045471362-3">[</span><span class="s">&quot;deps.get&quot;</span><span class="p" data-group-id="1045471362-3">]</span><span class="p">,</span><span class="w">
-    </span><span class="ss">&quot;assets.deploy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1045471362-4">[</span><span class="w">
+<pre><code class="makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">aliases</span><span class="w"> </span><span class="k" data-group-id="1683806211-1">do</span><span class="w">
+  </span><span class="p" data-group-id="1683806211-2">[</span><span class="w">
+    </span><span class="ss">setup</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1683806211-3">[</span><span class="s">&quot;deps.get&quot;</span><span class="p" data-group-id="1683806211-3">]</span><span class="p">,</span><span class="w">
+    </span><span class="ss">&quot;assets.deploy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1683806211-4">[</span><span class="w">
       </span><span class="c1"># &quot;tailwind default --minify&quot;,</span><span class="w">
       </span><span class="s">&quot;cmd npm --prefix assets install&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># &lt;- here</span><span class="w">
       </span><span class="s">&quot;sass default --no-source-map --style=compressed&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># &lt;- here</span><span class="w">
       </span><span class="s">&quot;esbuild default --minify&quot;</span><span class="p">,</span><span class="w">
       </span><span class="s">&quot;phx.digest&quot;</span><span class="w">
-    </span><span class="p" data-group-id="1045471362-4">]</span><span class="w">
-  </span><span class="p" data-group-id="1045471362-2">]</span><span class="w">
-</span><span class="k" data-group-id="1045471362-1">end</span></code></pre>
+    </span><span class="p" data-group-id="1683806211-4">]</span><span class="w">
+  </span><span class="p" data-group-id="1683806211-2">]</span><span class="w">
+</span><span class="k" data-group-id="1683806211-1">end</span></code></pre>
 <p>
 Rename <code class="inline">assets/css/app.css</code> to <code class="inline">assets/css/app.scss</code></p>
 <p>
@@ -93,27 +93,27 @@ In <code class="inline">config/config.exs</code>, replace tailwind config with d
 </span><span class="c1">#  Configure dart_sass for SCSS building</span><span class="w">
 </span><span class="n">config</span><span class="w"> </span><span class="ss">:dart_sass</span><span class="p">,</span><span class="w">
   </span><span class="ss">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.61.0&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">default</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2666047482-1">[</span><span class="w">
+  </span><span class="ss">default</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8526878321-1">[</span><span class="w">
     </span><span class="ss">args</span><span class="p">:</span><span class="w"> </span><span class="sx">~w(css/app.scss ../priv/static/assets/app.css)</span><span class="p">,</span><span class="w">
-    </span><span class="ss">cd</span><span class="p">:</span><span class="w"> </span><span class="nc">Path</span><span class="o">.</span><span class="n">expand</span><span class="p" data-group-id="2666047482-2">(</span><span class="s">&quot;../assets&quot;</span><span class="p">,</span><span class="w"> </span><span class="bp">__DIR__</span><span class="p" data-group-id="2666047482-2">)</span><span class="w">
-  </span><span class="p" data-group-id="2666047482-1">]</span></code></pre>
+    </span><span class="ss">cd</span><span class="p">:</span><span class="w"> </span><span class="nc">Path</span><span class="o">.</span><span class="n">expand</span><span class="p" data-group-id="8526878321-2">(</span><span class="s">&quot;../assets&quot;</span><span class="p">,</span><span class="w"> </span><span class="bp">__DIR__</span><span class="p" data-group-id="8526878321-2">)</span><span class="w">
+  </span><span class="p" data-group-id="8526878321-1">]</span></code></pre>
 <p>
 in <code class="inline">config/dev.exs</code>, configure sass watcher</p>
 <pre><code class="makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:ex_static</span><span class="p">,</span><span class="w"> </span><span class="nc">ExStaticWeb.Endpoint</span><span class="p">,</span><span class="w">
   </span><span class="c1"># Binding to loopback ipv4 address prevents access from other machines.</span><span class="w">
   </span><span class="c1"># Change to `ip: {0, 0, 0, 0}` to allow access from other machines.</span><span class="w">
-  </span><span class="ss">http</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5662877236-1">[</span><span class="ss">ip</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5662877236-2">{</span><span class="mi">127</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="5662877236-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p" data-group-id="5662877236-1">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">http</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8972430045-1">[</span><span class="ss">ip</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8972430045-2">{</span><span class="mi">127</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="8972430045-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p" data-group-id="8972430045-1">]</span><span class="p">,</span><span class="w">
   </span><span class="ss">check_origin</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
   </span><span class="ss">code_reloader</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
   </span><span class="ss">debug_errors</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
   </span><span class="ss">secret_key_base</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vQoLVWkQsOzoLp3vUT3chIOZVlgNJg3oLOZJr/HUE1iyjV8ZGTYD4D5PM48FxHOj&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">watchers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5662877236-3">[</span><span class="w">
-    </span><span class="ss">esbuild</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5662877236-4">{</span><span class="nc">Esbuild</span><span class="p">,</span><span class="w"> </span><span class="ss">:install_and_run</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5662877236-5">[</span><span class="ss">:default</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(--sourcemap=inline --watch)</span><span class="p" data-group-id="5662877236-5">]</span><span class="p" data-group-id="5662877236-4">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">watchers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8972430045-3">[</span><span class="w">
+    </span><span class="ss">esbuild</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8972430045-4">{</span><span class="nc">Esbuild</span><span class="p">,</span><span class="w"> </span><span class="ss">:install_and_run</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8972430045-5">[</span><span class="ss">:default</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(--sourcemap=inline --watch)</span><span class="p" data-group-id="8972430045-5">]</span><span class="p" data-group-id="8972430045-4">}</span><span class="p">,</span><span class="w">
     </span><span class="c1"># tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}</span><span class="w">
     </span><span class="ss">sass</span><span class="p">:</span><span class="w">
-      </span><span class="p" data-group-id="5662877236-6">{</span><span class="nc">DartSass</span><span class="p">,</span><span class="w"> </span><span class="ss">:install_and_run</span><span class="p">,</span><span class="w">
-       </span><span class="p" data-group-id="5662877236-7">[</span><span class="ss">:default</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(--embed-source-map --source-map-urls=absolute --watch)</span><span class="p" data-group-id="5662877236-7">]</span><span class="p" data-group-id="5662877236-6">}</span><span class="w"> </span><span class="c1"># &lt;- here</span><span class="w">
-  </span><span class="p" data-group-id="5662877236-3">]</span></code></pre>
+      </span><span class="p" data-group-id="8972430045-6">{</span><span class="nc">DartSass</span><span class="p">,</span><span class="w"> </span><span class="ss">:install_and_run</span><span class="p">,</span><span class="w">
+       </span><span class="p" data-group-id="8972430045-7">[</span><span class="ss">:default</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(--embed-source-map --source-map-urls=absolute --watch)</span><span class="p" data-group-id="8972430045-7">]</span><span class="p" data-group-id="8972430045-6">}</span><span class="w"> </span><span class="c1"># &lt;- here</span><span class="w">
+  </span><span class="p" data-group-id="8972430045-3">]</span></code></pre>
 <p>
 Import bootstrap into your <code class="inline">assets/app.scss</code> file. You may also override Bootstrap variables like this:</p>
 <pre><code class="json">// Custom Variables (will override boostrap variables)
@@ -130,6 +130,7 @@ $secondary: #FF7F00;
         </div>
       </div>
     </div>
+
   </div>
 </main>
 </main>

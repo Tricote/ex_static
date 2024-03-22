@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="cRRQElQJfSpOAE8mHFJyG1k1C39yE0En4z1t0DHKxlxdTg4zaf_JCDpc">
+    <meta name="csrf-token" content="dRMUPDF2HEEgZCNkAiENQX8FLAVdKWsP6LEOK2V2zRYSPq59JIbF0N2K">
     <title data-suffix=" · Phoenix Framework">
 ExStatic
      · Phoenix Framework</title>
@@ -85,11 +85,11 @@ In <code class="inline">prod.exs</code> file you will need to add the <code clas
 <p>
 For a standard Phoenix app, we have a <code class="inline">runtime.exs</code> file to read environment variables and configure the application at runtime. But for a static site, there is no need for that. You can have reasonable default values in the <code class="inline">runtime.exs</code>, so that we don’t have to specify them when generating the static site. So the <code class="inline">SECRET_KEY_BASE</code> and <code class="inline">PHX_HOST</code> for instance can be hardcoded in <code class="inline">runtime.exs</code>.</p>
 <pre><code class="makeup elixir"><span class="w">  </span><span class="n">secret_key_base</span><span class="w"> </span><span class="o">=</span><span class="w">
-    </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="0362972085-1">(</span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="0362972085-1">)</span><span class="w"> </span><span class="o">||</span><span class="w">
+    </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="8569953912-1">(</span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="8569953912-1">)</span><span class="w"> </span><span class="o">||</span><span class="w">
       </span><span class="s">&quot;zigxtDrIex/lvxu3MG2JdrQANICNR6mzfI8PxXjk1uHi3jtVKB7cmATd8JlitRSm&quot;</span><span class="w"> </span><span class="c1"># &lt;- generated using mix phx.gen.secret</span><span class="w">
   </span><span class="n">...</span><span class="w">
 
-  </span><span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="0362972085-2">(</span><span class="s">&quot;PHX_HOST&quot;</span><span class="p" data-group-id="0362972085-2">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span></code></pre>
+  </span><span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="8569953912-2">(</span><span class="s">&quot;PHX_HOST&quot;</span><span class="p" data-group-id="8569953912-2">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span></code></pre>
 <p>
 <em>Note: I’m hardcoding things like this, so that if I ever need to make my site dynamic after all, I can easily “convert it”…</em></p>
 <h2>
@@ -229,6 +229,7 @@ And you should be done: a <code class="inline">git push</code> on the main branc
         </div>
       </div>
     </div>
+
   </div>
 </main>
 </main>
