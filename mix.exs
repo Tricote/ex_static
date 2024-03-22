@@ -36,7 +36,7 @@ defmodule ExStatic.MixProject do
       {:phoenix_html, "~> 3.3"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.20.1"},
-      {:floki, ">= 0.30.0", only: :test},
+      {:floki, ">= 0.30.0"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:dart_sass, "~> 0.6", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 0.6"},
@@ -51,7 +51,8 @@ defmodule ExStatic.MixProject do
       {:nimble_publisher, "~> 1.0"},
       {:makeup_elixir, ">= 0.0.0"},
       {:makeup_erlang, ">= 0.0.0"},
-      {:makeup_json, "~> 0.1.0"}
+      {:makeup_html, "~> 0.1.0"},
+      {:makeup_json, "~> 0.1.0"},
     ]
   end
 

@@ -1,6 +1,6 @@
 <main class="container">
   <div class="row mb-5">
-    <div class="col-md-8 offset-md-2">
+    <div class={if(!Enum.empty?(@toc_items), do: "col-md-9", else: "col-md-8 offset-md-2")}>
       <div class="card shadow-sm shadow-hover position-relative mb-3">
         <div class="card-body">
           <p class="mb-1">
@@ -22,5 +22,16 @@
         </div>
       </div>
     </div>
+    <%= if !Enum.empty?(@toc_items) do %>
+    <div class="col-md-3">
+      <div class="card sticky-top shadow-sm shadow-hover mb-3" style="top: 20px;">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Table of content</h5>
+          <hr>
+          <TocComponent.toc toc_items={@toc_items} max_heading_level={3} wrapper_class="list-unstyled" item_class="mb-2" />
+        </div>
+      </div>
+    </div>
+    <% end %>
   </div>
 </main>
