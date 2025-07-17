@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="JjBDKCA5AEIeVxZ3fQx4G1U-MzoGAwRFtW-ozzZ1PfbGI4Iy7oBLM4nt">
+    <meta name="csrf-token" content="BSsCEhMxUwdMVQgDNgI_XjwARi4XNXQrAr7dWy6D5amGPEwfZA0qxwES">
     <title data-suffix=" · Phoenix Framework">
 An Elixir and Phoenix based static site generator in one line of code
      · Phoenix Framework</title>
@@ -108,11 +108,11 @@ In <code class="inline">prod.exs</code> file you will need to add the <code clas
 <p>
 For a standard Phoenix app, we have a <code class="inline">runtime.exs</code> file to read environment variables and configure the application at runtime. But for a static site, there is no need for that. You can have reasonable default values in the <code class="inline">runtime.exs</code>, so that we don’t have to specify them when generating the static site. So the <code class="inline">SECRET_KEY_BASE</code> and <code class="inline">PHX_HOST</code> for instance can be hardcoded in <code class="inline">runtime.exs</code>.</p>
 <pre><code class="makeup elixir"><span class="w">  </span><span class="n">secret_key_base</span><span class="w"> </span><span class="o">=</span><span class="w">
-    </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="2316338591-1">(</span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="2316338591-1">)</span><span class="w"> </span><span class="o">||</span><span class="w">
+    </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="9567486040-1">(</span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="9567486040-1">)</span><span class="w"> </span><span class="o">||</span><span class="w">
       </span><span class="s">&quot;zigxtDrIex/lvxu3MG2JdrQANICNR6mzfI8PxXjk1uHi3jtVKB7cmATd8JlitRSm&quot;</span><span class="w"> </span><span class="c1"># &lt;- generated using mix phx.gen.secret</span><span class="w">
   </span><span class="n">...</span><span class="w">
 
-  </span><span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="2316338591-2">(</span><span class="s">&quot;PHX_HOST&quot;</span><span class="p" data-group-id="2316338591-2">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span></code></pre>
+  </span><span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="9567486040-2">(</span><span class="s">&quot;PHX_HOST&quot;</span><span class="p" data-group-id="9567486040-2">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span></code></pre>
 <p>
 <em>Note: I’m hardcoding things like this, so that if I ever need to make my site dynamic after all, I can easily “convert it”…</em></p>
 <h2>
