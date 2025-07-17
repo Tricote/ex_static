@@ -3,44 +3,63 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="eAgFfVAbGF4kfUNFDRNkOxYUT1EAGCgm3Ph41Bqnj777UFUReA5euyzy">
+    <meta name="csrf-token" content="ByhXIw0saUQJeAd4B0J9DgFiFCQcZwlDUO9dWo37GIsH3zLlc3eRWPcr">
     <title data-suffix=" · Phoenix Framework">
-ExStatic
+ExStatic - Elixir blog
      · Phoenix Framework</title>
-    <link phx-track-static rel="stylesheet" href="assets/app-a06caf1378f3d4e3dd26f04c7d23196a.css">
+    <link phx-track-static rel="stylesheet" href="assets/app-0513a2721a89f39b54b6c734c3103e01.css">
     <script defer phx-track-static type="text/javascript" src="assets/app-63c815f0894ce301efe8d07ba30e3cd6.js">
     </script>
   </head>
-  <body class="bg-white antialiased">
-<div class="container">
-  <header class="blog-header py-3">
-    <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 pt-1"></div>
-      <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="index.html">ExStatic</a>
+  <body class="bg-white antialiased min-vh-100">
+<div class="bg-dark text-light mb-5">
+  <div class="container">
+    <header class="blog-header py-3 mb-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 pt-1">
+          <div class="">
+            <a class="blog-header-logo text-light" href="index.html">
+              <i class="fas fa-bolt text-warning me-2"></i>Plain Old Elixir Module
+            </a>
+          </div>
+          <div class="small ms-2 text-light">Elixir POEMs</div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="nav-scroller">
+            <nav class="navbar bg-dark d-flex justify-content-center">
+              <a class="nav-link px-4" href="index.html">
+                <i class="fas fa-home me-2"></i>Blog
+              </a>
+              <a class="nav-link px-4" href="about.html">
+                <i class="fas fa-user me-2"></i>About
+              </a>
+            </nav>
+          </div>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <div class="d-flex gap-2">
+            <a href="https://www.linkedin.com/in/thibautdecaudain/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:thibaut.decaudain@accesstrial.care" class="btn btn-outline-secondary btn-sm" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="col-4 d-flex justify-content-end align-items-center"></div>
-    </div>
-  </header>
-
-  <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-center">
-      <a class="nav-link text-muted" href="index.html">Blog</a>
-      <a class="nav-link text-muted" href="about.html">About</a>
-    </nav>
+    </header>
   </div>
 </div>
 
+<main class="container" style="min-height: 80vh;">
 <main class="container">
-<main class="container">
-  <div class="row mb-5">
+  <!-- Latest Posts Section -->
+  <div class="row" id="latest-posts">
     <div class="col-md-8 offset-md-2">
-      <div class="card position-relative mb-3">
-        <div class="card-body rounded">
-          <h1 class="display-4 fw-bold">ExStatic</h1>
-          <p class="lead my-3">
-            A blog about Elixir and Software Engineering
-          </p>
+      <div class="d-flex align-items-center mb-5">
+        <h2 class="fw-bold mb-0 me-3">Latest Posts</h2>
+        <div class="flex-grow-1">
+          <hr class="my-0">
         </div>
       </div>
     </div>
@@ -50,105 +69,126 @@ ExStatic
 
         <div class="card shadow-sm shadow-hover position-relative mb-3">
   <div class="card-body">
-    <div class="d-flex">
-      <div class="left flex-grow-1">
-        <p class="mb-1">
-          <strong class="text-primary">
+    <a href="blog/liveview-file-uploads-autorecover.html" class="stretched-link text-decoration-none text-dark">
+      <div class="d-flex">
+        <div class="left flex-grow-1">
+          <p class="mb-1">
+            <strong class="text-primary">
 #Phoenix
-          </strong>
-        </p>
-        <h3 class="card-title mb-2">Handling File Uploads in Phoenix LiveView resilient to server restarts</h3>
+            </strong>
+          </p>
+          <h3 class="card-title mb-2">Building Resilient File Uploads in Phoenix LiveView: Auto-Recovery and Cleanup Strategies</h3>
 
-        <p class="card-text mb-1 text-muted">2025-07-07</p>
-        <a href="blog/liveview-file-uploads-autorecover.html" class="stretched-link">
-          Continue reading
-        </a>
+          <p class="card-text mb-1 text-muted">2025-07-07</p>
+        </div>
+        <div class="right flex-shrink-0 d-flex align-items-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa-solid fa-circle fa-stack-2x text-light"></i>
+            <i class="fa-solid fa-arrow-right fa-stack-1x text-primary"></i>
+          </span>
+        </div>
       </div>
-      <div class="right flex-shrink-0 d-flex align-items-center">
-        <span class="fa-stack fa-2x">
-          <i class="fa-solid fa-circle fa-stack-2x text-light"></i>
-          <i class="fa-solid fa-arrow-right fa-stack-1x text-primary"></i>
-        </span>
-      </div>
-    </div>
+    </a>
   </div>
 </div>
 
         <div class="card shadow-sm shadow-hover position-relative mb-3">
   <div class="card-body">
-    <div class="d-flex">
-      <div class="left flex-grow-1">
-        <p class="mb-1">
-          <strong class="text-primary">
+    <a href="blog/resilient-file-uploads-phoenix-liveview-auto-recovery-cleanup.html" class="stretched-link text-decoration-none text-dark">
+      <div class="d-flex">
+        <div class="left flex-grow-1">
+          <p class="mb-1">
+            <strong class="text-primary">
 #Phoenix
-          </strong>
-        </p>
-        <h3 class="card-title mb-2">A Phoenix component to display a Table of Content (TOC) for an html document</h3>
+            </strong>
+          </p>
+          <h3 class="card-title mb-2">Building Resilient File Uploads in Phoenix LiveView: Auto-Recovery and Cleanup Strategies</h3>
 
-        <p class="card-text mb-1 text-muted">2024-03-22</p>
-        <a href="blog/generate-a-toc-for-an-html-article.html" class="stretched-link">
-          Continue reading
-        </a>
+          <p class="card-text mb-1 text-muted">2025-07-07</p>
+        </div>
+        <div class="right flex-shrink-0 d-flex align-items-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa-solid fa-circle fa-stack-2x text-light"></i>
+            <i class="fa-solid fa-arrow-right fa-stack-1x text-primary"></i>
+          </span>
+        </div>
       </div>
-      <div class="right flex-shrink-0 d-flex align-items-center">
-        <span class="fa-stack fa-2x">
-          <i class="fa-solid fa-circle fa-stack-2x text-light"></i>
-          <i class="fa-solid fa-arrow-right fa-stack-1x text-primary"></i>
-        </span>
-      </div>
-    </div>
+    </a>
   </div>
 </div>
 
         <div class="card shadow-sm shadow-hover position-relative mb-3">
   <div class="card-body">
-    <div class="d-flex">
-      <div class="left flex-grow-1">
-        <p class="mb-1">
-          <strong class="text-primary">
+    <a href="blog/generate-a-toc-for-an-html-article.html" class="stretched-link text-decoration-none text-dark">
+      <div class="d-flex">
+        <div class="left flex-grow-1">
+          <p class="mb-1">
+            <strong class="text-primary">
+#Phoenix
+            </strong>
+          </p>
+          <h3 class="card-title mb-2">A Phoenix component to display a Table of Content (TOC) for an html document</h3>
+
+          <p class="card-text mb-1 text-muted">2024-03-22</p>
+        </div>
+        <div class="right flex-shrink-0 d-flex align-items-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa-solid fa-circle fa-stack-2x text-light"></i>
+            <i class="fa-solid fa-arrow-right fa-stack-1x text-primary"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+        <div class="card shadow-sm shadow-hover position-relative mb-3">
+  <div class="card-body">
+    <a href="blog/replace-tailwind-by-bootstrap-in-phoenix.html" class="stretched-link text-decoration-none text-dark">
+      <div class="d-flex">
+        <div class="left flex-grow-1">
+          <p class="mb-1">
+            <strong class="text-primary">
 #Phoenix, #Bootstrap
-          </strong>
-        </p>
-        <h3 class="card-title mb-2">Replace default Tailwind by Bootstrap 5 in Phoenix</h3>
+            </strong>
+          </p>
+          <h3 class="card-title mb-2">Replace default Tailwind by Bootstrap 5 in Phoenix</h3>
 
-        <p class="card-text mb-1 text-muted">2023-11-19</p>
-        <a href="blog/replace-tailwind-by-bootstrap-in-phoenix.html" class="stretched-link">
-          Continue reading
-        </a>
+          <p class="card-text mb-1 text-muted">2023-11-19</p>
+        </div>
+        <div class="right flex-shrink-0 d-flex align-items-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa-solid fa-circle fa-stack-2x text-light"></i>
+            <i class="fa-solid fa-arrow-right fa-stack-1x text-primary"></i>
+          </span>
+        </div>
       </div>
-      <div class="right flex-shrink-0 d-flex align-items-center">
-        <span class="fa-stack fa-2x">
-          <i class="fa-solid fa-circle fa-stack-2x text-light"></i>
-          <i class="fa-solid fa-arrow-right fa-stack-1x text-primary"></i>
-        </span>
-      </div>
-    </div>
+    </a>
   </div>
 </div>
 
         <div class="card shadow-sm shadow-hover position-relative mb-3">
   <div class="card-body">
-    <div class="d-flex">
-      <div class="left flex-grow-1">
-        <p class="mb-1">
-          <strong class="text-primary">
+    <a href="blog/an-elixir-and-phoenix-based-static-site-generator-in-one-line-of-code.html" class="stretched-link text-decoration-none text-dark">
+      <div class="d-flex">
+        <div class="left flex-grow-1">
+          <p class="mb-1">
+            <strong class="text-primary">
 #Phoenix
-          </strong>
-        </p>
-        <h3 class="card-title mb-2">An Elixir and Phoenix based static site generator in one line of code</h3>
+            </strong>
+          </p>
+          <h3 class="card-title mb-2">An Elixir and Phoenix based static site generator in one line of code</h3>
 
-        <p class="card-text mb-1 text-muted">2023-11-18</p>
-        <a href="blog/an-elixir-and-phoenix-based-static-site-generator-in-one-line-of-code.html" class="stretched-link">
-          Continue reading
-        </a>
+          <p class="card-text mb-1 text-muted">2023-11-18</p>
+        </div>
+        <div class="right flex-shrink-0 d-flex align-items-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa-solid fa-circle fa-stack-2x text-light"></i>
+            <i class="fa-solid fa-arrow-right fa-stack-1x text-primary"></i>
+          </span>
+        </div>
       </div>
-      <div class="right flex-shrink-0 d-flex align-items-center">
-        <span class="fa-stack fa-2x">
-          <i class="fa-solid fa-circle fa-stack-2x text-light"></i>
-          <i class="fa-solid fa-arrow-right fa-stack-1x text-primary"></i>
-        </span>
-      </div>
-    </div>
+    </a>
   </div>
 </div>
 
@@ -157,6 +197,69 @@ ExStatic
 </main>
 </main>
 
-<footer class="footer"></footer>
+<footer class="footer bg-dark text-light py-5 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <h5 class="fw-bold mb-3">
+          <i class="fas fa-bolt text-warning me-2"></i> Plain Old Elixir Module
+        </h5>
+        <p>
+          A blog about Elixir and Software Engineering
+        </p>
+      </div>
+
+      <div class="col-lg-4 mb-4">
+        <h5 class="fw-bold mb-3">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="index.html" class="text-decoration-none text-light opacity-75 hover-opacity-100">
+              <i class="fas fa-home me-2"></i>Home
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="about.html" class="text-decoration-none text-light opacity-75 hover-opacity-100">
+              <i class="fas fa-user me-2"></i>About
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4 mb-4">
+        <h5 class="fw-bold mb-3">Connect With Me</h5>
+        <div class="d-flex gap-3 mb-3">
+          <a href="https://www.linkedin.com/in/thibautdecaudain/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm" title="LinkedIn Profile">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://www.accesstrial.care" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm" title="AccessTrial">
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          <a href="mailto:thibaut.decaudain@accesstrial.care" class="btn btn-outline-light btn-sm" title="Send Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+        <p class="small mb-2">
+          <i class="fas fa-briefcase me-2"></i>
+          CTO at
+          <a href="https://www.accesstrial.care" target="_blank" rel="noopener noreferrer" class="text-warning text-decoration-none">
+            AccessTrial
+          </a>
+        </p>
+        <p class="small mb-2">
+          <i class="fas fa-users me-2"></i>
+          <a href="https://drive.google.com/file/d/1STC2AkmHXzqV2ncvVY536eyyAqYzcMNY/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-warning text-decoration-none">
+            We're hiring!
+          </a>
+        </p>
+        <p class="small">
+          <i class="fas fa-envelope me-2"></i>
+          <a href="mailto:thibaut.decaudain@accesstrial.care" class="text-light text-decoration-none opacity-75">
+            thibaut.decaudain@accesstrial.care
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
   </body>
 </html>

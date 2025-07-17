@@ -3,35 +3,55 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="JAEUcBcaAFU3ex4oH2MACBcYO3o4WBQMoYy9vCiey1jZG61adMANM9FS">
+    <meta name="csrf-token" content="JV8lAg4UEDwtcjJBBA1VVC8XBw8meixyw8KETWJOcCFq05d6MFvymMFC">
     <title data-suffix=" · Phoenix Framework">
-ExStatic
+Replace default Tailwind by Bootstrap 5 in Phoenix
      · Phoenix Framework</title>
-    <link phx-track-static rel="stylesheet" href="../assets/app-a06caf1378f3d4e3dd26f04c7d23196a.css">
+    <link phx-track-static rel="stylesheet" href="../assets/app-0513a2721a89f39b54b6c734c3103e01.css">
     <script defer phx-track-static type="text/javascript" src="../assets/app-63c815f0894ce301efe8d07ba30e3cd6.js">
     </script>
   </head>
-  <body class="bg-white antialiased">
-<div class="container">
-  <header class="blog-header py-3">
-    <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 pt-1"></div>
-      <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="../index.html">ExStatic</a>
+  <body class="bg-white antialiased min-vh-100">
+<div class="bg-dark text-light mb-5">
+  <div class="container">
+    <header class="blog-header py-3 mb-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 pt-1">
+          <div class="">
+            <a class="blog-header-logo text-light" href="../index.html">
+              <i class="fas fa-bolt text-warning me-2"></i>Plain Old Elixir Module
+            </a>
+          </div>
+          <div class="small ms-2 text-light">Elixir POEMs</div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="nav-scroller">
+            <nav class="navbar bg-dark d-flex justify-content-center">
+              <a class="nav-link px-4" href="../index.html">
+                <i class="fas fa-home me-2"></i>Blog
+              </a>
+              <a class="nav-link px-4" href="../about.html">
+                <i class="fas fa-user me-2"></i>About
+              </a>
+            </nav>
+          </div>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <div class="d-flex gap-2">
+            <a href="https://www.linkedin.com/in/thibautdecaudain/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:thibaut.decaudain@accesstrial.care" class="btn btn-outline-secondary btn-sm" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="col-4 d-flex justify-content-end align-items-center"></div>
-    </div>
-  </header>
-
-  <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-center">
-      <a class="nav-link text-muted" href="../index.html">Blog</a>
-      <a class="nav-link text-muted" href="../about.html">About</a>
-    </nav>
+    </header>
   </div>
 </div>
 
-<main class="container">
+<main class="container" style="min-height: 80vh;">
 <main class="container">
   <div class="row mb-5">
     <div class="col-md-8 offset-md-2">
@@ -49,11 +69,11 @@ ExStatic
           <div class="article-body">
 <p>
 In <code class="inline">mix.exs</code>, removes the <code class="inline">tailwind</code> library and add the <code class="inline">dart_saas</code> library:</p>
-<pre><code class="makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="2739498889-1">do</span><span class="w">
-  </span><span class="p" data-group-id="2739498889-2">[</span><span class="w">
+<pre><code class="makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="2858337448-1">do</span><span class="w">
+  </span><span class="p" data-group-id="2858337448-2">[</span><span class="w">
     </span><span class="c1"># ...</span><span class="w">
     </span><span class="c1"># {:tailwind, &quot;~&gt; 0.2.0&quot;, runtime: Mix.env() == :dev},</span><span class="w">
-    </span><span class="p" data-group-id="2739498889-3">{</span><span class="ss">:dart_sass</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 0.6&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">runtime</span><span class="p">:</span><span class="w"> </span><span class="nc">Mix</span><span class="o">.</span><span class="n">env</span><span class="p" data-group-id="2739498889-4">(</span><span class="p" data-group-id="2739498889-4">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:dev</span><span class="p" data-group-id="2739498889-3">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="2858337448-3">{</span><span class="ss">:dart_sass</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 0.6&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">runtime</span><span class="p">:</span><span class="w"> </span><span class="nc">Mix</span><span class="o">.</span><span class="n">env</span><span class="p" data-group-id="2858337448-4">(</span><span class="p" data-group-id="2858337448-4">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">:dev</span><span class="p" data-group-id="2858337448-3">}</span><span class="p">,</span><span class="w">
     </span><span class="c1"># ...</span><span class="w">
   </span><span class="err">}</span><span class="w">
 </span><span class="k">end</span></code></pre>
@@ -63,18 +83,18 @@ Add the bootstrap package</p>
 npm install bootstrap</code></pre>
 <p>
 In <code class="inline">mix.exs</code>, replace tailwind build command with the npm and saas command:</p>
-<pre><code class="makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">aliases</span><span class="w"> </span><span class="k" data-group-id="6177529731-1">do</span><span class="w">
-  </span><span class="p" data-group-id="6177529731-2">[</span><span class="w">
-    </span><span class="ss">setup</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6177529731-3">[</span><span class="s">&quot;deps.get&quot;</span><span class="p" data-group-id="6177529731-3">]</span><span class="p">,</span><span class="w">
-    </span><span class="ss">&quot;assets.deploy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6177529731-4">[</span><span class="w">
+<pre><code class="makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">aliases</span><span class="w"> </span><span class="k" data-group-id="8142948284-1">do</span><span class="w">
+  </span><span class="p" data-group-id="8142948284-2">[</span><span class="w">
+    </span><span class="ss">setup</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8142948284-3">[</span><span class="s">&quot;deps.get&quot;</span><span class="p" data-group-id="8142948284-3">]</span><span class="p">,</span><span class="w">
+    </span><span class="ss">&quot;assets.deploy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8142948284-4">[</span><span class="w">
       </span><span class="c1"># &quot;tailwind default --minify&quot;,</span><span class="w">
       </span><span class="s">&quot;cmd npm --prefix assets install&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># &lt;- here</span><span class="w">
       </span><span class="s">&quot;sass default --no-source-map --style=compressed&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># &lt;- here</span><span class="w">
       </span><span class="s">&quot;esbuild default --minify&quot;</span><span class="p">,</span><span class="w">
       </span><span class="s">&quot;phx.digest&quot;</span><span class="w">
-    </span><span class="p" data-group-id="6177529731-4">]</span><span class="w">
-  </span><span class="p" data-group-id="6177529731-2">]</span><span class="w">
-</span><span class="k" data-group-id="6177529731-1">end</span></code></pre>
+    </span><span class="p" data-group-id="8142948284-4">]</span><span class="w">
+  </span><span class="p" data-group-id="8142948284-2">]</span><span class="w">
+</span><span class="k" data-group-id="8142948284-1">end</span></code></pre>
 <p>
 Rename <code class="inline">assets/css/app.css</code> to <code class="inline">assets/css/app.scss</code></p>
 <p>
@@ -96,27 +116,27 @@ In <code class="inline">config/config.exs</code>, replace tailwind config with d
 </span><span class="c1">#  Configure dart_sass for SCSS building</span><span class="w">
 </span><span class="n">config</span><span class="w"> </span><span class="ss">:dart_sass</span><span class="p">,</span><span class="w">
   </span><span class="ss">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.61.0&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">default</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1723024869-1">[</span><span class="w">
+  </span><span class="ss">default</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2347802865-1">[</span><span class="w">
     </span><span class="ss">args</span><span class="p">:</span><span class="w"> </span><span class="sx">~w(css/app.scss ../priv/static/assets/app.css)</span><span class="p">,</span><span class="w">
-    </span><span class="ss">cd</span><span class="p">:</span><span class="w"> </span><span class="nc">Path</span><span class="o">.</span><span class="n">expand</span><span class="p" data-group-id="1723024869-2">(</span><span class="s">&quot;../assets&quot;</span><span class="p">,</span><span class="w"> </span><span class="bp">__DIR__</span><span class="p" data-group-id="1723024869-2">)</span><span class="w">
-  </span><span class="p" data-group-id="1723024869-1">]</span></code></pre>
+    </span><span class="ss">cd</span><span class="p">:</span><span class="w"> </span><span class="nc">Path</span><span class="o">.</span><span class="n">expand</span><span class="p" data-group-id="2347802865-2">(</span><span class="s">&quot;../assets&quot;</span><span class="p">,</span><span class="w"> </span><span class="bp">__DIR__</span><span class="p" data-group-id="2347802865-2">)</span><span class="w">
+  </span><span class="p" data-group-id="2347802865-1">]</span></code></pre>
 <p>
 in <code class="inline">config/dev.exs</code>, configure sass watcher</p>
 <pre><code class="makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:ex_static</span><span class="p">,</span><span class="w"> </span><span class="nc">ExStaticWeb.Endpoint</span><span class="p">,</span><span class="w">
   </span><span class="c1"># Binding to loopback ipv4 address prevents access from other machines.</span><span class="w">
   </span><span class="c1"># Change to `ip: {0, 0, 0, 0}` to allow access from other machines.</span><span class="w">
-  </span><span class="ss">http</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6703135643-1">[</span><span class="ss">ip</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6703135643-2">{</span><span class="mi">127</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6703135643-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p" data-group-id="6703135643-1">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">http</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9921743779-1">[</span><span class="ss">ip</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9921743779-2">{</span><span class="mi">127</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9921743779-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">port</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p" data-group-id="9921743779-1">]</span><span class="p">,</span><span class="w">
   </span><span class="ss">check_origin</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
   </span><span class="ss">code_reloader</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
   </span><span class="ss">debug_errors</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
   </span><span class="ss">secret_key_base</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vQoLVWkQsOzoLp3vUT3chIOZVlgNJg3oLOZJr/HUE1iyjV8ZGTYD4D5PM48FxHOj&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">watchers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6703135643-3">[</span><span class="w">
-    </span><span class="ss">esbuild</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6703135643-4">{</span><span class="nc">Esbuild</span><span class="p">,</span><span class="w"> </span><span class="ss">:install_and_run</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6703135643-5">[</span><span class="ss">:default</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(--sourcemap=inline --watch)</span><span class="p" data-group-id="6703135643-5">]</span><span class="p" data-group-id="6703135643-4">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">watchers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9921743779-3">[</span><span class="w">
+    </span><span class="ss">esbuild</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9921743779-4">{</span><span class="nc">Esbuild</span><span class="p">,</span><span class="w"> </span><span class="ss">:install_and_run</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9921743779-5">[</span><span class="ss">:default</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(--sourcemap=inline --watch)</span><span class="p" data-group-id="9921743779-5">]</span><span class="p" data-group-id="9921743779-4">}</span><span class="p">,</span><span class="w">
     </span><span class="c1"># tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}</span><span class="w">
     </span><span class="ss">sass</span><span class="p">:</span><span class="w">
-      </span><span class="p" data-group-id="6703135643-6">{</span><span class="nc">DartSass</span><span class="p">,</span><span class="w"> </span><span class="ss">:install_and_run</span><span class="p">,</span><span class="w">
-       </span><span class="p" data-group-id="6703135643-7">[</span><span class="ss">:default</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(--embed-source-map --source-map-urls=absolute --watch)</span><span class="p" data-group-id="6703135643-7">]</span><span class="p" data-group-id="6703135643-6">}</span><span class="w"> </span><span class="c1"># &lt;- here</span><span class="w">
-  </span><span class="p" data-group-id="6703135643-3">]</span></code></pre>
+      </span><span class="p" data-group-id="9921743779-6">{</span><span class="nc">DartSass</span><span class="p">,</span><span class="w"> </span><span class="ss">:install_and_run</span><span class="p">,</span><span class="w">
+       </span><span class="p" data-group-id="9921743779-7">[</span><span class="ss">:default</span><span class="p">,</span><span class="w"> </span><span class="sx">~w(--embed-source-map --source-map-urls=absolute --watch)</span><span class="p" data-group-id="9921743779-7">]</span><span class="p" data-group-id="9921743779-6">}</span><span class="w"> </span><span class="c1"># &lt;- here</span><span class="w">
+  </span><span class="p" data-group-id="9921743779-3">]</span></code></pre>
 <p>
 Import bootstrap into your <code class="inline">assets/app.scss</code> file. You may also override Bootstrap variables like this:</p>
 <pre><code class="json">// Custom Variables (will override boostrap variables)
@@ -138,6 +158,69 @@ $secondary: #FF7F00;
 </main>
 </main>
 
-<footer class="footer"></footer>
+<footer class="footer bg-dark text-light py-5 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <h5 class="fw-bold mb-3">
+          <i class="fas fa-bolt text-warning me-2"></i> Plain Old Elixir Module
+        </h5>
+        <p>
+          A blog about Elixir and Software Engineering
+        </p>
+      </div>
+
+      <div class="col-lg-4 mb-4">
+        <h5 class="fw-bold mb-3">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="../index.html" class="text-decoration-none text-light opacity-75 hover-opacity-100">
+              <i class="fas fa-home me-2"></i>Home
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="../about.html" class="text-decoration-none text-light opacity-75 hover-opacity-100">
+              <i class="fas fa-user me-2"></i>About
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4 mb-4">
+        <h5 class="fw-bold mb-3">Connect With Me</h5>
+        <div class="d-flex gap-3 mb-3">
+          <a href="https://www.linkedin.com/in/thibautdecaudain/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm" title="LinkedIn Profile">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://www.accesstrial.care" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm" title="AccessTrial">
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          <a href="mailto:thibaut.decaudain@accesstrial.care" class="btn btn-outline-light btn-sm" title="Send Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+        <p class="small mb-2">
+          <i class="fas fa-briefcase me-2"></i>
+          CTO at
+          <a href="https://www.accesstrial.care" target="_blank" rel="noopener noreferrer" class="text-warning text-decoration-none">
+            AccessTrial
+          </a>
+        </p>
+        <p class="small mb-2">
+          <i class="fas fa-users me-2"></i>
+          <a href="https://drive.google.com/file/d/1STC2AkmHXzqV2ncvVY536eyyAqYzcMNY/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-warning text-decoration-none">
+            We're hiring!
+          </a>
+        </p>
+        <p class="small">
+          <i class="fas fa-envelope me-2"></i>
+          <a href="mailto:thibaut.decaudain@accesstrial.care" class="text-light text-decoration-none opacity-75">
+            thibaut.decaudain@accesstrial.care
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
   </body>
 </html>

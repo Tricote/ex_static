@@ -3,35 +3,55 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="MzEOHhFhO2U0CUQjLQprLjwRP1wwNTsLxicWp8RUzC0Qu_ZGODEhETiT">
+    <meta name="csrf-token" content="JjBDKCA5AEIeVxZ3fQx4G1U-MzoGAwRFtW-ozzZ1PfbGI4Iy7oBLM4nt">
     <title data-suffix=" · Phoenix Framework">
-ExStatic
+An Elixir and Phoenix based static site generator in one line of code
      · Phoenix Framework</title>
-    <link phx-track-static rel="stylesheet" href="../assets/app-a06caf1378f3d4e3dd26f04c7d23196a.css">
+    <link phx-track-static rel="stylesheet" href="../assets/app-0513a2721a89f39b54b6c734c3103e01.css">
     <script defer phx-track-static type="text/javascript" src="../assets/app-63c815f0894ce301efe8d07ba30e3cd6.js">
     </script>
   </head>
-  <body class="bg-white antialiased">
-<div class="container">
-  <header class="blog-header py-3">
-    <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 pt-1"></div>
-      <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="../index.html">ExStatic</a>
+  <body class="bg-white antialiased min-vh-100">
+<div class="bg-dark text-light mb-5">
+  <div class="container">
+    <header class="blog-header py-3 mb-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 pt-1">
+          <div class="">
+            <a class="blog-header-logo text-light" href="../index.html">
+              <i class="fas fa-bolt text-warning me-2"></i>Plain Old Elixir Module
+            </a>
+          </div>
+          <div class="small ms-2 text-light">Elixir POEMs</div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="nav-scroller">
+            <nav class="navbar bg-dark d-flex justify-content-center">
+              <a class="nav-link px-4" href="../index.html">
+                <i class="fas fa-home me-2"></i>Blog
+              </a>
+              <a class="nav-link px-4" href="../about.html">
+                <i class="fas fa-user me-2"></i>About
+              </a>
+            </nav>
+          </div>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <div class="d-flex gap-2">
+            <a href="https://www.linkedin.com/in/thibautdecaudain/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:thibaut.decaudain@accesstrial.care" class="btn btn-outline-secondary btn-sm" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="col-4 d-flex justify-content-end align-items-center"></div>
-    </div>
-  </header>
-
-  <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-center">
-      <a class="nav-link text-muted" href="../index.html">Blog</a>
-      <a class="nav-link text-muted" href="../about.html">About</a>
-    </nav>
+    </header>
   </div>
 </div>
 
-<main class="container">
+<main class="container" style="min-height: 80vh;">
 <main class="container">
   <div class="row mb-5">
     <div class="col-md-8 offset-md-2">
@@ -88,11 +108,11 @@ In <code class="inline">prod.exs</code> file you will need to add the <code clas
 <p>
 For a standard Phoenix app, we have a <code class="inline">runtime.exs</code> file to read environment variables and configure the application at runtime. But for a static site, there is no need for that. You can have reasonable default values in the <code class="inline">runtime.exs</code>, so that we don’t have to specify them when generating the static site. So the <code class="inline">SECRET_KEY_BASE</code> and <code class="inline">PHX_HOST</code> for instance can be hardcoded in <code class="inline">runtime.exs</code>.</p>
 <pre><code class="makeup elixir"><span class="w">  </span><span class="n">secret_key_base</span><span class="w"> </span><span class="o">=</span><span class="w">
-    </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="6669161904-1">(</span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="6669161904-1">)</span><span class="w"> </span><span class="o">||</span><span class="w">
+    </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="2316338591-1">(</span><span class="s">&quot;SECRET_KEY_BASE&quot;</span><span class="p" data-group-id="2316338591-1">)</span><span class="w"> </span><span class="o">||</span><span class="w">
       </span><span class="s">&quot;zigxtDrIex/lvxu3MG2JdrQANICNR6mzfI8PxXjk1uHi3jtVKB7cmATd8JlitRSm&quot;</span><span class="w"> </span><span class="c1"># &lt;- generated using mix phx.gen.secret</span><span class="w">
   </span><span class="n">...</span><span class="w">
 
-  </span><span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="6669161904-2">(</span><span class="s">&quot;PHX_HOST&quot;</span><span class="p" data-group-id="6669161904-2">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span></code></pre>
+  </span><span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="2316338591-2">(</span><span class="s">&quot;PHX_HOST&quot;</span><span class="p" data-group-id="2316338591-2">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span></code></pre>
 <p>
 <em>Note: I’m hardcoding things like this, so that if I ever need to make my site dynamic after all, I can easily “convert it”…</em></p>
 <h2>
@@ -237,6 +257,69 @@ And you should be done: a <code class="inline">git push</code> on the main branc
 </main>
 </main>
 
-<footer class="footer"></footer>
+<footer class="footer bg-dark text-light py-5 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <h5 class="fw-bold mb-3">
+          <i class="fas fa-bolt text-warning me-2"></i> Plain Old Elixir Module
+        </h5>
+        <p>
+          A blog about Elixir and Software Engineering
+        </p>
+      </div>
+
+      <div class="col-lg-4 mb-4">
+        <h5 class="fw-bold mb-3">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="../index.html" class="text-decoration-none text-light opacity-75 hover-opacity-100">
+              <i class="fas fa-home me-2"></i>Home
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="../about.html" class="text-decoration-none text-light opacity-75 hover-opacity-100">
+              <i class="fas fa-user me-2"></i>About
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4 mb-4">
+        <h5 class="fw-bold mb-3">Connect With Me</h5>
+        <div class="d-flex gap-3 mb-3">
+          <a href="https://www.linkedin.com/in/thibautdecaudain/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm" title="LinkedIn Profile">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://www.accesstrial.care" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm" title="AccessTrial">
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          <a href="mailto:thibaut.decaudain@accesstrial.care" class="btn btn-outline-light btn-sm" title="Send Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+        <p class="small mb-2">
+          <i class="fas fa-briefcase me-2"></i>
+          CTO at
+          <a href="https://www.accesstrial.care" target="_blank" rel="noopener noreferrer" class="text-warning text-decoration-none">
+            AccessTrial
+          </a>
+        </p>
+        <p class="small mb-2">
+          <i class="fas fa-users me-2"></i>
+          <a href="https://drive.google.com/file/d/1STC2AkmHXzqV2ncvVY536eyyAqYzcMNY/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-warning text-decoration-none">
+            We're hiring!
+          </a>
+        </p>
+        <p class="small">
+          <i class="fas fa-envelope me-2"></i>
+          <a href="mailto:thibaut.decaudain@accesstrial.care" class="text-light text-decoration-none opacity-75">
+            thibaut.decaudain@accesstrial.care
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
   </body>
 </html>
