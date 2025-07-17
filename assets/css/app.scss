@@ -5,8 +5,6 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 // Fontawesome
-// $fa-font-path: "../node_modules/@fortawesome/fontawesome-free/webfonts/";
-// @import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
 
 @import "makup.scss";
 
@@ -14,12 +12,21 @@
 
 .article-body {
   p {
-    margin-bottom: 1.6em;
+    margin-bottom: 1.5em;
+    line-height: 1.8em;
+  }
+
+  p:has(+ ul) {
+    margin-bottom: 0.75em;
+  }
+
+  ul {
+    margin-bottom: 1.5em;
     line-height: 1.8em;
   }
 
   pre {
-    margin-bottom: 1.6em;
+    margin-bottom: 1.5em;
   }
 
   img {

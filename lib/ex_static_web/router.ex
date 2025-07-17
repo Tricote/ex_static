@@ -18,6 +18,7 @@ defmodule ExStaticWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/about", PageController, :about
     get "/other", PageController, :other
 
     get "/blog", BlogController, :index

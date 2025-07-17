@@ -12,4 +12,8 @@ defmodule ExStaticWeb.PageController do
   def other(conn, _params) do
     render(conn, :other)
   end
+
+  def about(conn, _params) do
+    render(conn, :about)
+  end
 end
