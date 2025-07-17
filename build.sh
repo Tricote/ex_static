@@ -9,6 +9,7 @@ echo y |MIX_ENV=prod mix release
 _build/prod/rel/ex_static/bin/ex_static daemon
 sleep 2
 
+# 3. Mirror the site
 # cf Wget options: https://www.man7.org/linux/man-pages/man1/wget.1.html
 # -r (or --recursive) Recursive retrieving. The default maximum depth is 5
 # -k (or --convert-links) will convert links in the web pages to relative after the download finishes
@@ -21,4 +22,11 @@ sleep 2
 #   (no additional http://localhost:4000/ directory created,
 #   files will be saved directly in the directory specified in the -P argument)
 wget -r -k -E -P public/ --no-host-directories http://localhost:4000/
+
+# # 4. Post-process: Remove .html extensions from links
+# # This removes .html from href attributes while preserving other links like external URLs
+# # We use a more specific pattern to avoid breaking external links or anchors
+# find public/ -name "*.html" -type f -exec sed -i 's/href="\([^"]*\)\.html\(#[^"]*\)\?"/href="\1\2"/g' {} \;
+
+# 5. Stop the server
 _build/prod/rel/ex_static/bin/ex_static stop
