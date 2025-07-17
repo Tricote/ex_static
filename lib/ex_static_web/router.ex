@@ -19,9 +19,8 @@ defmodule ExStaticWeb.Router do
 
     get "/", PageController, :home
     get "/about", PageController, :about
-    get "/other", PageController, :other
 
-    get "/blog", BlogController, :index
+    # get "/blog", BlogController, :index
     get "/blog/:id", BlogController, :show
   end
 

@@ -12,6 +12,6 @@ defmodule ExStaticWeb.BlogController do
     post = Blog.get_post_by_id!(id)
     toc_items = Toc.build_from_html(post.body) |> IO.inspect()
 
-    render(conn, "show.html", post: Blog.get_post_by_id!(id), toc_items: toc_items)
+    render(conn, "show.html", page_title: post.title, post: post, toc_items: toc_items)
   end
 end

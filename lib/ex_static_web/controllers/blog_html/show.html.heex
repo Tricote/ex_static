@@ -23,15 +23,20 @@
       </div>
     </div>
     <%= if !Enum.empty?(@toc_items) do %>
-    <div class="col-md-3">
-      <div class="card sticky-top shadow-sm shadow-hover mb-3" style="top: 20px;">
-        <div class="card-body">
-          <h5 class="card-title mb-3">Table of content</h5>
-          <hr>
-          <TocComponent.toc toc_items={@toc_items} max_heading_level={3} wrapper_class="list-unstyled" item_class="mb-2" />
+      <div class="col-md-3">
+        <div class="sticky-top mb-3" style="top: 20px;">
+          <div class="ps-3">
+            <h5 class="mb-3">Table of content</h5>
+            <hr />
+            <TocComponent.toc
+              toc_items={@toc_items}
+              max_heading_level={3}
+              wrapper_class="list-unstyled"
+              item_class="mb-2"
+            />
+          </div>
         </div>
       </div>
-    </div>
     <% end %>
   </div>
 </main>

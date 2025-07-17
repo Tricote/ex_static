@@ -5,6 +5,8 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 // Fontawesome
+// No need to import fontawesome here as it is already included in app.js file
+// via import "@fortawesome/fontawesome-free/js/all.js"
 
 @import "makup.scss";
 
@@ -31,5 +33,93 @@
 
   img {
     max-width: 100%;
+  }
+}
+
+/* Custom Blog Styles */
+
+// Hero Section
+.hero-section {
+  background-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  .btn-warning {
+    background-color: #ffd700;
+    border-color: #ffd700;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #ffed4e;
+      border-color: #ffed4e;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    }
+  }
+
+  .btn-outline-light {
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+// Footer Enhancements
+.footer {
+  .hover-opacity-100:hover {
+    opacity: 1 !important;
+    transition: opacity 0.3s ease;
+  }
+
+  .btn-outline-light {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// Smooth scrolling for anchor links
+html {
+  scroll-behavior: smooth;
+}
+
+// Enhanced navigation
+.blog-header-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $secondary !important;
+  }
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $secondary !important;
+    transform: translateY(-1px);
+  }
+}
+
+.footer {
+  a {
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $secondary !important;
+      transform: translateY(-1px);
+    }
   }
 }
