@@ -1,11 +1,11 @@
 %{
-  title: "Building Resilient File Uploads in Phoenix LiveView: Auto-Recovery and Cleanup Strategies",
+  title: "Phoenix LiveView File Uploads with auto-recovery on server restarts",
   author: "Tricote",
   tags: ~w(Phoenix)
 }
 ---
 
-While Phoenix LiveView handles many aspects of file uploads elegantly, managing server restarts on forms with uploads isn't completely handled by default. The auto-recovery mechanism works well for regular form fields so that if a server restart occurs while a user is filling out a form, all the standard fields are recovered automatically. However, file uploads are not.
+While Phoenix LiveView handles many aspects of file uploads elegantly, managing server restarts and deploys on forms with uploads is not completely handled by default. The auto-recovery mechanism works well for regular form fields so that if a server restart occurs while a user is filling out a form, all the standard fields are recovered automatically. However, file uploads are not.
 
 In this post, I'll walk through a robust approach to managing file uploads in LiveView that survive server restarts and provide a seamless user experience.
 
